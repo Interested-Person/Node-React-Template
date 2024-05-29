@@ -5,14 +5,17 @@
     const bodyParser=require("body-parser") 
 
     app.use(bodyParser.urlencoded({ extended: true }))
-    app.use(express.static(path.join(__dirname, 'client', 'dist')))
+    app.use("/assets", express.static(path.join(__dirname, "client", "dist", "assets")));
     app.set('view engine', 'ejs')
 
     //res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
 
-    app.get('/', (req, res) => {
-        
-    });
+    app.get("/",(req, res)=>{
+        res.sendFile(path.join(__dirname, 'client', 'dist', 'home.html'))
+    })
+    app.get('/app/*', (req, res)=>{
+        res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+    })
 
 
 
